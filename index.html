@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 UNIVERSE — The Complete Beginner's Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E8002D;
+    --red-dark: #A50020;
+    --gold: #FFD700;
+    --carbon: #0A0A0A;
+    --dark: #111111;
+    --mid: #1A1A1A;
+    --surface: #222222;
+    --border: #333333;
+    --text: #F0F0F0;
+    --muted: #888888;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--carbon);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--carbon);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 50% at 50% 60%, rgba(232,0,45,0.15) 0%, transparent 70%),
+      repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(255,255,255,0.02) 60px),
+      repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(255,255,255,0.02) 60px);
+  }
+
+  .hero-flag {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(90deg, #fff 0 20px, #000 20px 40px);
+    opacity: 0.3;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.4em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 18vw, 14rem);
+    line-height: 0.85;
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.02em;
+  }
+
+  .hero h1 span {
+    color: var(--red);
+    display: block;
+  }
+
+  .hero-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-cta a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.9rem 2rem;
+    border: 1px solid;
+    transition: all 0.2s;
+  }
+
+  .cta-primary { background: var(--red); color: #fff; border-color: var(--red); }
+  .cta-primary:hover { background: var(--red-dark); }
+  .cta-secondary { background: transparent; color: var(--text); border-color: var(--border); }
+  .cta-secondary:hover { border-color: var(--text); }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  nav::-webkit-scrollbar { display: none; }
+
+  nav a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    padding: 1rem 1.4rem;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  nav a:hover { color: var(--white); border-color: var(--red); }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 60px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 700px;
+    margin-bottom: 3rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--red), var(--border), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 3rem 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 12px var(--red);
+  }
+
+  .timeline-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .timeline-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* LEGEND CARDS */
+  .legends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+
+  .legend-card {
+    background: var(--dark);
+    padding: 2rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+
+  .legend-card:hover { background: var(--mid); }
+
+  .legend-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--border);
+    transition: color 0.2s;
+    margin-bottom: 0.5rem;
+  }
+
+  .legend-card:hover .legend-number { color: var(--red); }
+
+  .legend-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+  }
+
+  .legend-era {
+    font-size: 0.8rem;
+    color: var(--red);
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .legend-stat {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .legend-desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  /* TEAMS */
+  .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .team-card {
+    border: 1px solid var(--border);
+    background: var(--dark);
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .team-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .team-card:hover { border-color: var(--muted); }
+
+  .team-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+  }
+
+  .team-base {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+    margin-bottom: 1rem;
+  }
+
+  .team-drivers {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .driver-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .team-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .team-titles {
+    margin-top: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* TRACKS */
+  .tracks-list {
+    display: grid;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+
+  .track-item {
+    background: var(--dark);
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: start;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    transition: background 0.2s;
+  }
+
+  .track-item:hover { background: var(--mid); }
+
+  .track-round {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--red);
+    line-height: 1;
+    text-align: center;
+  }
+
+  .track-round span {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .track-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+
+  .track-location {
+    font-size: 0.8rem;
+    color: var(--red);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+    margin-bottom: 0.5rem;
+  }
+
+  .track-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .track-length {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .track-length span {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  /* CAR SECTION */
+  .car-svg-container {
+    margin: 2rem 0 3rem;
+    position: relative;
+  }
+
+  .car-parts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .part-card {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .part-card:hover { border-color: var(--red); }
+
+  .part-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .part-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+
+  .part-desc {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  /* RULES ACCORDION */
+  .accordion {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .accordion-item { background: var(--dark); }
+
+  .accordion-header {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+  }
+
+  .accordion-header:hover { background: var(--mid); }
+
+  .accordion-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  .accordion-icon {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--red);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+
+  .accordion-item.open .accordion-icon { transform: rotate(45deg); }
+
+  .accordion-body {
+    display: none;
+    padding: 0 1.75rem 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+
+  .accordion-item.open .accordion-body { display: block; }
+
+  /* FLAGS */
+  .flag {
+    display: inline-block;
+    width: 20px;
+    height: 14px;
+    vertical-align: middle;
+    margin-right: 6px;
+    font-size: 1.1em;
+  }
+
+  /* GLOSSARY */
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 2rem;
+  }
+
+  .glossary-item {
+    background: var(--dark);
+    padding: 1.25rem 1.5rem;
+    transition: background 0.2s;
+  }
+
+  .glossary-item:hover { background: var(--mid); }
+
+  .glossary-term {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.35rem;
+  }
+
+  .glossary-def {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  footer .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .track-item { grid-template-columns: 60px 1fr; }
+    .track-length { display: none; }
+    .legend-stat { gap: 1rem; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* QUICK FACTS BAR */
+  .facts-bar {
+    background: var(--red);
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    overflow: hidden;
+  }
+
+  .fact {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    white-space: nowrap;
+  }
+
+  .fact strong { color: #fff; }
+
+  /* RACE WEEKEND TABLE */
+  .weekend-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .weekend-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .weekend-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+  }
+
+  .weekend-table tr:last-child td { border-bottom: none; }
+  .weekend-table tr:hover td { background: var(--mid); }
+
+  .session-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    background: var(--surface);
+    display: inline-block;
+  }
+
+  .badge-race { background: var(--red); color: #fff; }
+  .badge-quali { background: #444; color: #fff; }
+  .badge-practice { background: var(--surface); color: var(--muted); }
+  .badge-sprint { background: #7c3aed; color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-flag"></div>
+  <p class="hero-eyebrow">Your Complete Beginner's Guide</p>
+  <h1>FORMULA<span>ONE</span></h1>
+  <p class="hero-sub">History · Legends · Teams · Tracks · The Machine · The Rules</p>
+  <div class="hero-cta">
+    <a href="#history" class="cta-primary">Start the Journey</a>
+    <a href="#glossary" class="cta-secondary">F1 Glossary</a>
+  </div>
+</div>
+
+<!-- FACTS BAR -->
+<div class="facts-bar">
+  <span class="fact">🏁 Founded <strong>1950</strong></span>
+  <span class="fact">🌍 <strong>24</strong> Races per season</span>
+  <span class="fact">🏎️ Top speed <strong>375+ km/h</strong></span>
+  <span class="fact">⚙️ <strong>1,000+</strong> horsepower</span>
+  <span class="fact">🏆 <strong>10</strong> Teams on the grid</span>
+  <span class="fact">👨‍🏎️ <strong>20</strong> Drivers per season</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#history">History</a>
+  <a href="#legends">Legends</a>
+  <a href="#teams">Teams</a>
+  <a href="#tracks">Tracks</a>
+  <a href="#car">The Car</a>
+  <a href="#weekend">Race Weekend</a>
+  <a href="#rules">Rules</a>
+  <a href="#glossary">Glossary</a>
+</nav>
+
+<!-- ======= HISTORY ======= -->
+<section id="history">
+  <div class="section-label">Chapter 01</div>
+  <h2 class="section-title">The History<br>of Formula One</h2>
+  <p class="section-intro">Formula One is the pinnacle of motorsport — a world championship series born in 1950 that transformed from post-war racing into a global spectacle watched by 1.5 billion fans. Here's how it evolved.</p>
+
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">1950</div>
+      <div class="timeline-title">The Birth of the World Championship</div>
+      <div class="timeline-desc">The first-ever Formula One World Championship race was held at Silverstone, England on May 13, 1950. King George VI attended, and Giuseppe Farina of Alfa Romeo won. Farina went on to claim the first World Drivers' Championship that year. The sport had 6 races in its debut season — today it has 24.</div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">1950s–60s</div>
+      <div class="timeline-title">The Brave Era — Speed Without Safety</div>
+      <div class="timeline-desc">Early F1 was thrillingly dangerous. Drivers raced with minimal safety equipment on treacherous circuits with no barriers. Juan Manuel Fangio dominated the late 1950s, winning 5 championships. Jim Clark and Jack Brabham became heroes, but the era was marked by tragedy as fatalities were tragically common.</div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">1970s</div>
+      <div class="timeline-title">Ground Effect & the Safety Revolution</div>
+      <div class="timeline-desc">Lotus introduced "ground effect" aerodynamics — using the car's underside to generate massive downforce. This era also saw growing pressure to improve safety after the deaths of multiple drivers. Jackie Stewart became the most vocal advocate for safer circuits, and his campaign began changing the sport forever.</div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">1980s</div>
+      <div class="timeline-title">Turbo Warfare & Prost vs Senna</div>
+      <div class="timeline-desc">Turbocharged engines producing over 1,400 horsepower in qualifying trim made F1 feel like science fiction. The decade ended with the greatest rivalry in sports history: Ayrton Senna (Brazil) vs Alain Prost (France). Their battles at McLaren were legendary — passionate and occasionally violent on track.</div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">1994</div>
+      <div class="timeline-title">The Darkest Weekend</div>
+      <div class="timeline-desc">At the 1994 San Marino Grand Prix, Roland Ratzenberger died in qualifying and three-time World Champion Ayrton Senna was killed in the race. It was a devastating moment that permanently changed the FIA's approach to safety, leading to massive improvements in car design, barriers, and circuit safety that have made modern F1 remarkably safe.</div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2000s</div>
+      <div class="timeline-title">The Schumacher Era</div>
+      <div class="timeline-desc">Michael Schumacher dominated with Ferrari, winning 5 consecutive championships from 2000–2004. He rewrote the record books and brought unprecedented professionalism — physical training, simulator work, and technical collaboration — to a driver's role. At his peak, his races were almost impossible to beat.</div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2010s</div>
+      <div class="timeline-title">Hamilton & the Hybrid Era</div>
+      <div class="timeline-desc">New turbocharged hybrid engines arrived in 2014, and Mercedes dominated for 8 straight years. Lewis Hamilton became the greatest of all time by most metrics — 7 World Championships (matching Schumacher), 103 race wins, and 103 pole positions. He also became a cultural icon, championing diversity and speaking on social issues.</div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2021</div>
+      <div class="timeline-title">The Most Controversial Title Finish Ever</div>
+      <div class="timeline-desc">The 2021 season produced the most dramatic finale in F1 history. Max Verstappen (Red Bull) and Lewis Hamilton (Mercedes) entered the final lap of the last race tied on points. A controversial safety car decision gave Verstappen the win and the championship. The FIA later admitted race director Michael Masi had made errors, and Masi was replaced.</div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-year">2022–24</div>
+      <div class="timeline-title">Verstappen's Reign</div>
+      <div class="timeline-desc">With new technical regulations in 2022, Red Bull and Max Verstappen became unstoppable. Verstappen claimed his 4th consecutive World Championship in 2024. But as the 2025 season begins, rivals are closing the gap — making for one of the most anticipated competitive periods in decades.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ======= LEGENDS ======= -->
+<section id="legends">
+  <div class="section-label">Chapter 02</div>
+  <h2 class="section-title">The Legends<br>of the Sport</h2>
+  <p class="section-intro">These are the drivers whose names echo through F1 history — champions who transcended their era and defined what it means to be a racing driver.</p>
+
+  <div class="legends-grid">
+
+    <div class="legend-card reveal">
+      <div class="legend-number">5</div>
+      <div class="legend-name">Juan Manuel Fangio</div>
+      <div class="legend-era">🇦🇷 Argentina · 1950–1958</div>
+      <div class="legend-stat">
+        <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Titles</div></div>
+        <div class="stat-item"><div class="stat-num">24</div><div class="stat-label">Wins</div></div>
+        <div class="stat-item"><div class="stat-num">29</div><div class="stat-label">Poles</div></div>
+      </div>
+      <div class="legend-desc">Considered the greatest driver of the pre-safety era by many, Fangio won 5 championships with 4 different teams — a feat of adaptability and raw speed that stood as the benchmark for 45 years. His 1957 German GP comeback from a pit stop deficit is still called the greatest drive of all time.</div>
+    </div>
+
+    <div class="legend-card reveal">
+      <div class="legend-number">3</div>
+      <div class="legend-name">Ayrton Senna</div>
+      <div class="legend-era">🇧🇷 Brazil · 1984–1994</div>
+      <div class="legend-stat">
+        <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Titles</div></div>
+        <div class="stat-item"><div class="stat-num">41</div><div class="stat-label">Wins</div></div>
+        <div class="stat-item"><div class="stat-num">65</div><div class="stat-label">Poles</div></div>
+      </div>
+      <div class="legend-desc">The patron saint of F1. Senna's raw talent, qualifying mastery, and spiritual intensity made him the sport's most beloved figure. His wet-weather driving was supernatural. His death at Imola in 1994 remains the most painful day in F1 history. The entire country of Brazil mourned — 3 million attended his funeral.</div>
+    </div>
+
+    <div class="legend-card reveal">
+      <div class="legend-number">4</div>
+      <div class="legend-name">Alain Prost</div>
+      <div class="legend-era">🇫🇷 France · 1980–1993</div>
+      <div class="legend-stat">
+        <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Titles</div></div>
+        <div class="stat-item"><div class="stat-num">51</div><div class="stat-label">Wins</div></div>
+        <div class="stat-item"><div class="stat-num">33</div><div class="stat-label">Poles</div></div>
+      </div>
+      <div class="legend-desc">Nicknamed "The Professor" for his calculated, precise driving style, Prost rarely made mistakes. He and Senna's rivalry at McLaren was the greatest in sport — Prost used intelligence while Senna relied on inspiration. Their clashes defined an era and ended in collisions at the Japanese Grand Prix in both 1989 and 1990.</div>
+    </div>
+
+    <div class="legend-card reveal">
+      <div class="legend-number">7</div>
+      <div class="legend-name">Michael Schumacher</div>
+      <div class="legend-era">🇩🇪 Germany · 1991–2012</div>
+      <div class="legend-stat">
+        <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Titles</div></div>
+        <div class="stat-item"><div class="stat-num">91</div><div class="stat-label">Wins</div></div>
+        <div class="stat-item"><div class="stat-num">68</div><div class="stat-label">Poles</div></div>
+      </div>
+      <div class="legend-desc">When Schumacher joined Ferrari in 1996, they hadn't won a championship in 16 years. By 2004 he had delivered 5 consecutive titles. His professionalism was unprecedented — first in, last out of the factory. His records of 91 wins and 7 titles stood for decades before Hamilton eclipsed them. He was injured in a skiing accident in 2013 and lives privately today.</div>
+    </div>
+
+    <div class="legend-card reveal">
+      <div class="legend-number">7</div>
+      <div class="legend-name">Lewis Hamilton</div>
+      <div class="legend-era">🇬🇧 United Kingdom · 2007–Present</div>
+      <div class="legend-stat">
+        <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Titles</div></div>
+        <div class="stat-item"><div class="stat-num">103</div><div class="stat-label">Wins</div></div>
+        <div class="stat-item"><div class="stat-num">103+</div><div class="stat-label">Poles</div></div>
+      </div>
+      <div class="legend-desc">Statistically the greatest F1 driver in history. Hamilton broke every significant record and became the sport's most recognizable face globally. The first (and only) Black driver in F1 history, he used his platform to champion diversity and social justice. His battle with Verstappen in 2021 was the greatest title fight in the sport's modern era. In 2025, he made a stunning move to Ferrari.</div>
+    </div>
+
+    <div class="legend-card reveal">
+      <div class="legend-number">4</div>
+      <div class="legend-name">Max Verstappen</div>
+      <div class="legend-era">🇳🇱 Netherlands · 2015–Present</div>
+      <div class="legend-stat">
+        <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Titles</div></div>
+        <div class="stat-item"><div class="stat-num">60+</div><div class="stat-label">Wins</div></div>
+        <div class="stat-item"><div class="stat-num">40+</div><div class="stat-label">Poles</div></div>
+      </div>
+      <div class="legend-desc">The youngest race winner and youngest World Champion in F1 history at the time of his debut wins, Verstappen is the dominant force of his generation. Aggressive, relentlessly fast, and virtually unflappable under pressure, he won 19 races in a single season (2023) — a record. His rivalry with Hamilton is being called one of the sport's all-time great pairings.</div>
+    </div>
+
+    <div class="legend-card reveal">
+      <div class="legend-number">3</div>
+      <div class="legend-name">Jackie Stewart</div>
+      <div class="legend-era">🇬🇧 Scotland · 1965–1973</div>
+      <div class="legend-stat">
+        <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Titles</div></div>
+        <div class="stat-item"><div class="stat-num">27</div><div class="stat-label">Wins</div></div>
+        <div class="stat-item"><div class="stat-num">17</div><div class="stat-label">Poles</div></div>
+      </div>
+      <div class="legend-desc">Beyond his three championships, Stewart's most important legacy is transforming F1 safety. After witnessing and surviving multiple fatal accidents, he fought the establishment relentlessly for safer circuits, armco barriers, and medical facilities. He is directly responsible for saving hundreds of lives. He retired at the top in 1973 rather than risk his life further.</div>
+    </div>
+
+    <div class="legend-card reveal">
+      <div class="legend-number">2</div>
+      <div class="legend-name">Jim Clark</div>
+      <div class="legend-era">🇬🇧 Scotland · 1960–1968</div>
+      <div class="legend-stat">
+        <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Titles</div></div>
+        <div class="stat-item"><div class="stat-num">25</div><div class="stat-label">Wins</div></div>
+        <div class="stat-item"><div class="stat-num">33</div><div class="stat-label">Poles</div></div>
+      </div>
+      <div class="legend-desc">Many technical minds from the era consider Clark the most naturally talented driver they ever witnessed — a man for whom the car seemed an extension of his body. He died in a Formula 2 race in 1968 at Hockenheim — an event that shocked the world and accelerated the safety debate. His gentle, shy personality was at complete odds with his ferocity on track.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ======= TEAMS ======= -->
+<section id="teams">
+  <div class="section-label">Chapter 03</div>
+  <h2 class="section-title">The Teams<br>on the Grid</h2>
+  <p class="section-intro">Ten teams (called "constructors") compete in F1. Each fields two cars with two drivers. Teams design and build their own cars within FIA regulations, though they all share the same engine from one of four suppliers: Mercedes, Ferrari, Renault (Alpine), or Honda (Red Bull Powertrains).</p>
+
+  <div class="teams-grid">
+
+    <div class="team-card reveal" style="--team-color:#E8002D">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#E8002D"></div>
+      <div class="team-name">Ferrari</div>
+      <div class="team-base">📍 Maranello, Italy · Engine: Ferrari</div>
+      <div class="team-drivers">
+        <span class="driver-tag">Lewis Hamilton</span>
+        <span class="driver-tag">Charles Leclerc</span>
+      </div>
+      <div class="team-desc">The most iconic name in motorsport. The Scuderia Ferrari is the only team to have competed in every single Formula One season since 1950. Known as "La Scuderia," their red cars (Rosso Corsa) are the most recognizable in racing. The entire nation of Italy follows them with religious devotion. After a difficult decade, their signing of Lewis Hamilton in 2025 is their biggest move in a generation.</div>
+      <div class="team-titles">🏆 16 Constructors Championships · 15 Drivers Championships</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#3671C6"></div>
+      <div class="team-name">Red Bull Racing</div>
+      <div class="team-base">📍 Milton Keynes, UK · Engine: Honda RBPT</div>
+      <div class="team-drivers">
+        <span class="driver-tag">Max Verstappen</span>
+        <span class="driver-tag">Sergio Pérez</span>
+      </div>
+      <div class="team-desc">Founded in 2005 when energy drink company Red Bull bought Jaguar Racing, this team went from newcomers to the most dominant force in modern F1. Under legendary designer Adrian Newey (who left in 2024), they built some of the most technically innovative cars ever seen. Verstappen's four straight titles from 2021–2024 were built on their technical supremacy.</div>
+      <div class="team-titles">🏆 6 Constructors Championships · 7 Drivers Championships (via Verstappen)</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#27F4D2"></div>
+      <div class="team-name">Mercedes-AMG Petronas</div>
+      <div class="team-base">📍 Brackley, UK · Engine: Mercedes</div>
+      <div class="team-drivers">
+        <span class="driver-tag">George Russell</span>
+        <span class="driver-tag">Kimi Antonelli</span>
+      </div>
+      <div class="team-desc">The team that rewrote the record books. With the introduction of hybrid engines in 2014, Mercedes produced the most dominant stretch of performance in the sport's history — winning 8 consecutive Constructors Championships from 2014–2021. Led by team principal Toto Wolff and powered by Hamilton's genius, they turned F1 into a procession (to some) and a masterclass in engineering (to others).</div>
+      <div class="team-titles">🏆 8 Constructors Championships · Multiple Drivers Championships</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#FF8000"></div>
+      <div class="team-name">McLaren</div>
+      <div class="team-base">📍 Woking, UK · Engine: Mercedes</div>
+      <div class="team-drivers">
+        <span class="driver-tag">Lando Norris</span>
+        <span class="driver-tag">Oscar Piastri</span>
+      </div>
+      <div class="team-desc">One of the most storied names in F1. McLaren was the home of Senna and Prost in the 1980s, and Häkkinen and Coulthard in the late 1990s. After a dark decade of underperformance, they've made a remarkable comeback with their young driver pairing of Norris and Piastri. Their iconic papaya orange cars returned to genuine competitiveness in 2023 and they won the 2024 Constructors Championship.</div>
+      <div class="team-titles">🏆 9 Constructors Championships · 12 Drivers Championships</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#229971"></div>
+      <div class="team-name">Aston Martin Aramco</div>
+      <div class="team-base">📍 Silverstone, UK · Engine: Mercedes</div>
+      <div class="team-drivers">
+        <span class="driver-tag">Fernando Alonso</span>
+        <span class="driver-tag">Lance Stroll</span>
+      </div>
+      <div class="team-desc">Rebranded to Aston Martin in 2021 following billionaire Lawrence Stroll's takeover, this team is investing massively in a state-of-the-art new factory. The signing of 2-time champion Fernando Alonso in 2023 was a major signal of intent. Their British Racing Green cars are among the most beautiful on the grid, and they're building toward a title challenge.</div>
+      <div class="team-titles">🏆 0 Constructors Championships (as Aston Martin) · growing fast</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#FF1E00"></div>
+      <div class="team-name">Haas F1 Team</div>
+      <div class="team-base">📍 Kannapolis, USA · Engine: Ferrari</div>
+      <div class="team-drivers">
+        <span class="driver-tag">Esteban Ocon</span>
+        <span class="driver-tag">Oliver Bearman</span>
+      </div>
+      <div class="team-desc">The only American-owned team on the grid, Haas joined F1 in 2016. They operate with a unique model — using Ferrari components extensively rather than building everything in-house, making them the most "Ferrari-like" of the independent teams. They made headlines in 2022 when they retained the controversial Nikita Mazepin… then immediately dropped him after Russia invaded Ukraine.</div>
+      <div class="team-titles">🏆 0 Championships · midfield runners</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#52E252"></div>
+      <div class="team-name">Kick Sauber (Audi from 2026)</div>
+      <div class="team-base">📍 Hinwil, Switzerland · Engine: Ferrari</div>
+      <div class="team-drivers">
+        <span class="driver-tag">Nico Hülkenberg</span>
+        <span class="driver-tag">Gabriel Bortoleto</span>
+      </div>
+      <div class="team-desc">One of F1's quiet survivors, this Swiss team has operated under many names (Sauber, BMW Sauber, Alfa Romeo). In 2026 they become the factory Audi team — a huge moment as one of the world's great car brands enters F1 for the first time. Their transformation is one of the most anticipated stories of the next few years.</div>
+      <div class="team-titles">🏆 0 Championships · becoming the Audi works team in 2026</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#0093CC"></div>
+      <div class="team-name">Williams Racing</div>
+      <div class="team-base">📍 Grove, UK · Engine: Mercedes</div>
+      <div class="team-drivers">
+        <span class="driver-tag">Alex Albon</span>
+        <span class="driver-tag">Carlos Sainz</span>
+      </div>
+      <div class="team-desc">Frank Williams' team dominated F1 in the late 1980s and 1990s, winning 7 Constructors Championships. Mansell, Prost, Hill, and Villeneuve all won titles with them. After Frank's passing in 2021, the team (now owned by Dorilton Capital) is rebuilding. Williams has a heritage that demands respect — they are British motorsport royalty.</div>
+      <div class="team-titles">🏆 9 Constructors Championships · 7 Drivers Championships</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#FF87BC"></div>
+      <div class="team-name">Alpine F1 Team</div>
+      <div class="team-base">📍 Enstone, UK · Engine: Renault</div>
+      <div class="team-drivers">
+        <span class="driver-tag">Pierre Gasly</span>
+        <span class="driver-tag">Jack Doohan</span>
+      </div>
+      <div class="team-desc">The rebranded Renault works team, racing under the Alpine brand since 2021. Renault has a rich F1 history — they pioneered the turbocharged engine in the 1970s and won back-to-back championships with Fernando Alonso in 2005–2006. Under the Alpine name they've struggled for consistency but have genuine technical ambitions for the sport's new era.</div>
+      <div class="team-titles">🏆 2 Constructors Championships (as Renault) · rebuilding</div>
+    </div>
+
+    <div class="team-card reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#B6BABD"></div>
+      <div class="team-name">RB (Racing Bulls)</div>
+      <div class="team-base">📍 Faenza, Italy · Engine: Honda RBPT</div>
+      <div class="team-drivers">
+        <span class="driver-tag">Yuki Tsunoda</span>
+        <span class="driver-tag">Liam Lawson</span>
+      </div>
+      <div class="team-desc">Red Bull's "junior team" — a second F1 entry that serves as a development ground for young drivers. Formerly known as Toro Rosso, then AlphaTauri, and now RB. They've launched the careers of Vettel, Ricciardo, Verstappen, and Gasly. They use the same Honda power unit as Red Bull, making them technically linked to the dominant team.</div>
+      <div class="team-titles">🏆 0 Championships · Red Bull talent academy team</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ======= TRACKS ======= -->
+<section id="tracks">
+  <div class="section-label">Chapter 04</div>
+  <h2 class="section-title">Iconic<br>F1 Circuits</h2>
+  <p class="section-intro">Every track has its own personality. Some are fast and flowing, others a twisting nightmare through city streets. Here are the most significant circuits on the F1 calendar — and why they matter.</p>
+
+  <div class="tracks-list">
+
+    <div class="track-item reveal">
+      <div class="track-round">01<span>Round</span></div>
+      <div>
+        <div class="track-name">Circuit de Monaco</div>
+        <div class="track-location">🇲🇨 Monte Carlo, Monaco</div>
+        <div class="track-desc">The crown jewel of F1. Racing through the narrow streets of Monaco is the ultimate test of precision — one millimetre from the barriers at 280km/h. The most prestigious race to win, but the least amount of actual overtaking due to the tight layout. Qualifying matters more here than anywhere. Senna won it 6 times. Ayrton famously said: "If you no longer go for a gap that exists, you are no longer a racing driver."</div>
+      </div>
+      <div class="track-length">3.337<span>km/lap</span></div>
+    </div>
+
+    <div class="track-item reveal">
+      <div class="track-round">02<span>Round</span></div>
+      <div>
+        <div class="track-name">Silverstone Circuit</div>
+        <div class="track-location">🇬🇧 Northamptonshire, England</div>
+        <div class="track-desc">The birthplace of Formula One — the very first World Championship race was held here in 1950. A former RAF airfield transformed into the world's greatest racing circuit. Copse, Maggotts, Chapel, and Beckets — the fast sweeping corners at Silverstone are taken flat-out at full speed and test a driver's nerve like nowhere else. The British Grand Prix crowd is famously electric.</div>
+      </div>
+      <div class="track-length">5.891<span>km/lap</span></div>
+    </div>
+
+    <div class="track-item reveal">
+      <div class="track-round">03<span>Round</span></div>
+      <div>
+        <div class="track-name">Monza — Temple of Speed</div>
+        <div class="track-location">🇮🇹 Monza, Italy</div>
+        <div class="track-desc">The fastest race on the calendar. Monza's long straights and chicanes produce average speeds of over 260km/h — cars run minimal downforce to maximize straight-line speed. The Italian crowd (Tifosi) turns the grandstands into a wall of red Ferrari flags. When Ferrari wins here — as Leclerc did in 2019 — the celebrations are unlike anything else in sport.</div>
+      </div>
+      <div class="track-length">5.793<span>km/lap</span></div>
+    </div>
+
+    <div class="track-item reveal">
+      <div class="track-round">04<span>Round</span></div>
+      <div>
+        <div class="track-name">Suzuka International Racing Course</div>
+        <div class="track-location">🇯🇵 Suzuka, Japan</div>
+        <div class="track-desc">Many drivers and engineers consider Suzuka the best circuit in the world. Its figure-of-eight layout, the iconic 130R corner (flat out at 300km/h), the Esses sequence, and Degner — every corner is a masterpiece. Japanese fans are among the most devoted in the world, creating an extraordinary atmosphere. Multiple championships have been decided here, including two infamous Senna-Prost collisions.</div>
+      </div>
+      <div class="track-length">5.807<span>km/lap</span></div>
+    </div>
+
+    <div class="track-item reveal">
+      <div class="track-round">05<span>Round</span></div>
+      <div>
+        <div class="track-name">Circuit of the Americas (COTA)</div>
+        <div class="track-location">🇺🇸 Austin, Texas, USA</div>
+        <div class="track-desc">F1's American showcase. Opened in 2012 specifically to host the US Grand Prix, COTA was designed to be a modern classic — it borrows elements from great circuits around the world. The steep climb to Turn 1 followed by a fast left-right sweep is one of the most dramatic openers in motorsport. F1's growing popularity in America has made this race one of the biggest events on the calendar.</div>
+      </div>
+      <div class="track-length">5.513<span>km/lap</span></div>
+    </div>
+
+    <div class="track-item reveal">
+      <div class="track-round">06<span>Round</span></div>
+      <div>
+        <div class="track-name">Spa-Francorchamps</div>
+        <div class="track-location">🇧🇪 Stavelot, Belgium</div>
+        <div class="track-desc">Set in the forests of the Ardennes, Spa is the longest circuit on the calendar and arguably the most challenging. Eau Rouge / Raidillon — a terrifyingly fast uphill corner complex — is the most famous stretch of asphalt in motorsport. The weather changes mid-race. It can be sunny on one part of the circuit and raining on another. Spa produces drama every single year.</div>
+      </div>
+      <div class="track-length">7.004<span>km/lap</span></div>
+    </div>
+
+    <div class="track-item reveal">
+      <div class="track-round">07<span>Round</span></div>
+      <div>
+        <div class="track-name">Bahrain International Circuit</div>
+        <div class="track-location">🇧🇭 Sakhir, Bahrain</div>
+        <div class="track-desc">The traditional season opener (when not in Australia). Bahrain introduced F1 to the Middle East in 2004 and remains one of the most important venues on the calendar. Under floodlights at night, the desert backdrop creates a unique visual spectacle. The long Tarmac straight and long braking zones into Turn 1 make it a great overtaking circuit.</div>
+      </div>
+      <div class="track-length">5.412<span>km/lap</span></div>
+    </div>
+
+    <div class="track-item reveal">
+      <div class="track-round">08<span>Round</span></div>
+      <div>
+        <div class="track-name">Las Vegas Street Circuit</div>
+        <div class="track-location">🇺🇸 Las Vegas, Nevada, USA</div>
+        <div class="track-desc">The newest spectacle on the calendar, added in 2023. Racing through the Las Vegas Strip at night past casinos and hotels — past the Bellagio fountains, the MGM Grand — is unlike any other Grand Prix. Fast, long straights, night racing, and the full entertainment package of Las Vegas. It divided opinion initially but has grown quickly into one of the most-watched events globally.</div>
+      </div>
+      <div class="track-length">6.201<span>km/lap</span></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ======= THE CAR ======= -->
+<section id="car">
+  <div class="section-label">Chapter 05</div>
+  <h2 class="section-title">The Machine —<br>Inside an F1 Car</h2>
+  <p class="section-intro">A Formula One car is arguably the most technologically advanced vehicle ever built for the road. It takes roughly 80,000 components to assemble one. Here's what makes it extraordinary.</p>
+
+  <!-- Simple F1 Car SVG Diagram -->
+  <div class="car-svg-container">
+    <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:800px;display:block;margin:0 auto">
+      <!-- Body shadow -->
+      <ellipse cx="400" cy="240" rx="300" ry="18" fill="rgba(232,0,45,0.08)"/>
+      
+      <!-- Rear wing -->
+      <rect x="110" y="100" width="90" height="8" rx="2" fill="#E8002D"/>
+      <rect x="118" y="84" width="74" height="18" rx="3" fill="#E8002D"/>
+      <line x1="130" y1="84" x2="130" y2="108" stroke="#555" stroke-width="2"/>
+      <line x1="175" y1="84" x2="175" y2="108" stroke="#555" stroke-width="2"/>
+      
+      <!-- Car body -->
+      <path d="M160 160 L180 140 L580 140 L640 160 L640 195 L160 195 Z" fill="#1A1A1A" stroke="#333" stroke-width="1.5"/>
+      <!-- Body highlights -->
+      <path d="M200 140 L560 140 L580 155 L180 155 Z" fill="#222"/>
+      <rect x="240" y="140" width="300" height="4" rx="2" fill="#E8002D"/>
+      
+      <!-- Sidepods -->
+      <path d="M220 160 L250 148 L500 148 L540 165 L540 195 L220 195 Z" fill="#222" stroke="#333" stroke-width="1"/>
+      <!-- Red sidepod stripe -->
+      <rect x="255" y="148" width="230" height="4" fill="#E8002D"/>
+      
+      <!-- Cockpit / monocoque -->
+      <path d="M310 140 L340 110 L420 105 L460 110 L480 140 Z" fill="#111" stroke="#444" stroke-width="1.5"/>
+      <!-- Halo device -->
+      <path d="M340 118 Q380 98 420 118" fill="none" stroke="#888" stroke-width="5" stroke-linecap="round"/>
+      <rect x="377" y="108" width="6" height="20" rx="3" fill="#888"/>
+      <!-- Driver helmet -->
+      <ellipse cx="390" cy="122" rx="22" ry="18" fill="#E8002D"/>
+      <ellipse cx="390" cy="120" rx="18" ry="10" fill="#111"/>
+      <text x="390" y="124" text-anchor="middle" fill="#fff" font-size="7" font-family="'Barlow Condensed',sans-serif" font-weight="700">DRIVER</text>
+      
+      <!-- Front wing -->
+      <rect x="580" y="175" width="100" height="6" rx="2" fill="#E8002D"/>
+      <rect x="588" y="165" width="84" height="12" rx="2" fill="#E8002D"/>
+      <rect x="575" y="181" width="115" height="5" rx="2" fill="#333"/>
+      
+      <!-- DRS label -->
+      <text x="160" y="94" fill="#FFD700" font-size="9" font-family="'Barlow Condensed',sans-serif" font-weight="700">DRS</text>
+      <line x1="175" y1="97" x2="155" y2="108" stroke="#FFD700" stroke-width="1" stroke-dasharray="3,2"/>
+      
+      <!-- Floor / Ground effect -->
+      <rect x="200" y="193" width="340" height="8" rx="1" fill="#333"/>
+      <!-- Floor label -->
+      <text x="370" y="216" text-anchor="middle" fill="#888" font-size="8" font-family="'Barlow Condensed',sans-serif">FLOOR / GROUND EFFECT</text>
+      
+      <!-- Wheels -->
+      <!-- Front left -->
+      <ellipse cx="600" cy="200" rx="35" ry="28" fill="#222" stroke="#444" stroke-width="2"/>
+      <ellipse cx="600" cy="200" rx="22" ry="18" fill="#333"/>
+      <ellipse cx="600" cy="200" rx="10" ry="8" fill="#555"/>
+      <!-- Front right -->
+      <ellipse cx="600" cy="172" rx="12" ry="28" fill="#222" stroke="#444" stroke-width="2"/>
+      <!-- Rear left -->
+      <ellipse cx="190" cy="200" rx="40" ry="32" fill="#222" stroke="#444" stroke-width="2"/>
+      <ellipse cx="190" cy="200" rx="25" ry="20" fill="#333"/>
+      <ellipse cx="190" cy="200" rx="11" ry="9" fill="#555"/>
+      <!-- Rear right -->
+      <ellipse cx="190" cy="168" rx="14" ry="32" fill="#222" stroke="#444" stroke-width="2"/>
+      
+      <!-- Tire compound dots -->
+      <circle cx="600" cy="200" r="4" fill="#E8002D"/>
+      <circle cx="190" cy="200" r="4" fill="#FFFF00"/>
+      
+      <!-- Engine/PU label -->
+      <text x="270" y="172" fill="#888" font-size="8" font-family="'Barlow Condensed',sans-serif">POWER UNIT</text>
+      <line x1="310" y1="168" x2="330" y2="162" stroke="#444" stroke-width="1" stroke-dasharray="3,2"/>
+      
+      <!-- Labels -->
+      <text x="155" y="188" fill="#888" font-size="8" font-family="'Barlow Condensed',sans-serif">REAR</text>
+      <text x="155" y="198" fill="#888" font-size="8" font-family="'Barlow Condensed',sans-serif">WING</text>
+      
+      <text x="620" y="185" fill="#888" font-size="8" font-family="'Barlow Condensed',sans-serif">FRONT</text>
+      <text x="620" y="195" fill="#888" font-size="8" font-family="'Barlow Condensed',sans-serif">WING</text>
+
+      <!-- Speed indicator -->
+      <text x="400" y="265" text-anchor="middle" fill="#444" font-size="9" font-family="'Barlow Condensed',sans-serif" letter-spacing="3">TOP SPEED: 375+ KM/H · 0–100 KM/H: 2.6 SECONDS · WEIGHT: 798 KG</text>
+    </svg>
+  </div>
+
+  <div class="car-parts-grid">
+
+    <div class="part-card reveal">
+      <div class="part-icon">⚡</div>
+      <div class="part-name">Power Unit (Hybrid Engine)</div>
+      <div class="part-desc">Not just a regular engine. An F1 "power unit" is a 1.6L V6 turbocharged engine combined with two Motor Generator Units (MGUs) — one harvesting energy from the turbo (MGU-H) and one from braking (MGU-K). Combined output: over 1,000 horsepower. The internal combustion engine alone produces about 620hp — the hybrid systems add the rest. This unit is so complex it took Mercedes a decade to perfect theirs.</div>
+    </div>
+
+    <div class="part-card reveal">
+      <div class="part-icon">🔴</div>
+      <div class="part-name">Aerodynamics & Downforce</div>
+      <div class="part-desc">The most important part of the car you can't see working. At speed, aerodynamic forces press the car into the ground (downforce), allowing it to corner at physically impossible speeds. At 200km/h, an F1 car generates enough downforce to theoretically drive upside down on a ceiling. The front wing, rear wing, and floor are all aerodynamic devices. Teams spend 70% of their development budget on aero.</div>
+    </div>
+
+    <div class="part-card reveal">
+      <div class="part-icon">🎯</div>
+      <div class="part-name">DRS (Drag Reduction System)</div>
+      <div class="part-desc">A movable flap on the rear wing that the driver can open in specific "DRS zones" when following within one second of the car ahead. Opening DRS reduces aerodynamic drag and adds up to 20km/h of straight-line speed, making it easier to overtake. It was introduced in 2011 to increase passing opportunities. Critics say it makes overtaking too easy; fans love the extra action it creates.</div>
+    </div>
+
+    <div class="part-card reveal">
+      <div class="part-icon">🏁</div>
+      <div class="part-name">Tires — The Critical Variable</div>
+      <div class="part-desc">Pirelli is the sole tire supplier. They make 5 dry-weather compounds (C1–C5) plus Intermediate and Full Wet tires. Softer compounds are faster but wear out quickly; harder compounds last longer but are slower. Every race is essentially a puzzle of when to pit and which tires to use. The tire strategy can completely change race results and is one of the most complex and exciting aspects of F1.</div>
+    </div>
+
+    <div class="part-card reveal">
+      <div class="part-icon">🛡️</div>
+      <div class="part-name">The Halo — Life Saver</div>
+      <div class="part-desc">The titanium hoop above the driver's head looks odd but has saved multiple lives. Introduced in 2018 after heavy resistance (many found it ugly), it has since prevented deaths at Silverstone 2018 (Leclerc's crash), Bahrain 2020 (Grosjean's fireball), and most dramatically at Monza 2021 when Verstappen's car landed on Hamilton's head. It can withstand the weight of a London double-decker bus.</div>
+    </div>
+
+    <div class="part-card reveal">
+      <div class="part-icon">🧠</div>
+      <div class="part-name">Data Systems & Steering Wheel</div>
+      <div class="part-desc">An F1 car has over 300 sensors generating 3GB of data per race lap. The steering wheel alone has over 25 buttons, switches, and dials — and costs more than most sports cars. Drivers communicate with engineers constantly via radio. The engineers can monitor every engine parameter, tire temperature, brake temperature, and G-force in real time. It's as much a data exercise as a driving one.</div>
+    </div>
+
+    <div class="part-card reveal">
+      <div class="part-icon">🔥</div>
+      <div class="part-name">Brakes</div>
+      <div class="part-desc">Carbon ceramic brake discs that glow orange-red at over 1,000°C during heavy braking. An F1 car can brake from 300km/h to 0 in under 4 seconds — subjecting the driver to forces of over 5G (5 times their body weight). The braking distances are incredibly short: from 300km/h to a turn entry, you might use just 65 metres. Getting the braking point wrong by a fraction of a second costs places.</div>
+    </div>
+
+    <div class="part-card reveal">
+      <div class="part-icon">⚗️</div>
+      <div class="part-name">Materials — Carbon Fibre Everything</div>
+      <div class="part-desc">The car's "tub" (monocoque) — the central survival cell — is made of carbon fibre, a material 5 times stronger than steel at a quarter of the weight. Almost everything on an F1 car is carbon fibre, including the wings, body panels, and brake ducts. The entire car weighs just 798kg including the driver. Each component is manufactured to tolerances of microns — smaller than a human hair.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ======= RACE WEEKEND ======= -->
+<section id="weekend">
+  <div class="section-label">Chapter 06</div>
+  <h2 class="section-title">The Race<br>Weekend</h2>
+  <p class="section-intro">A Grand Prix weekend is a 3-day event (Thursday to Sunday) following a structured format. Understanding the schedule helps you follow what's happening and why each session matters.</p>
+
+  <table class="weekend-table reveal">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Session</th>
+        <th>Duration</th>
+        <th>What Happens</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Friday</td>
+        <td><span class="session-badge badge-practice">Practice 1 (FP1)</span></td>
+        <td>60 min</td>
+        <td>Teams gather data about the track — tire degradation, fuel loads, setup options. Drivers learn the circuit. Not important for points but crucial for information gathering. Rookies often get a drive here.</td>
+      </tr>
+      <tr>
+        <td>Friday</td>
+        <td><span class="session-badge badge-practice">Practice 2 (FP2)</span></td>
+        <td>60 min</td>
+        <td>More setup runs. Teams try different aerodynamic and suspension configurations. Often the session where teams start simulating race conditions with high fuel loads.</td>
+      </tr>
+      <tr>
+        <td>Saturday</td>
+        <td><span class="session-badge badge-practice">Practice 3 (FP3)</span></td>
+        <td>60 min</td>
+        <td>Final preparation before qualifying. Teams fine-tune the car setup based on FP1 and FP2 data. The pace starts to build as drivers push closer to the limit.</td>
+      </tr>
+      <tr>
+        <td>Saturday</td>
+        <td><span class="session-badge badge-quali">Qualifying (Q1/Q2/Q3)</span></td>
+        <td>60 min total</td>
+        <td><strong>The most exciting one-lap session in motorsport.</strong> Three knockout rounds determine the starting grid. Q1 eliminates the 5 slowest, Q2 eliminates the next 5, Q3 is a final 10-minute shootout for pole position. The pole-sitter leads the grid — a crucial advantage at tight circuits like Monaco.</td>
+      </tr>
+      <tr>
+        <td>Sunday</td>
+        <td><span class="session-badge badge-race">Race</span></td>
+        <td>~2 hours</td>
+        <td><strong>The main event.</strong> Roughly 305km (around 50–70 laps depending on circuit length). Points awarded to top 10 finishers (25-18-15-12-10-8-6-4-2-1). Fastest lap earns 1 bonus point. A race win requires skill, strategy, tire management, and occasionally a bit of luck — safety cars and weather can turn any race on its head.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:3rem" class="reveal">
+    <div class="section-label">Sprint Weekends</div>
+    <p style="font-size:0.95rem;line-height:1.75;color:var(--muted);max-width:700px">Some weekends (about 6 per season) include a <strong style="color:var(--text)">Sprint Race</strong> — a shorter 100km race on Saturday that awards its own points (8-7-6-5-4-3-2-1 for positions 1–8). Sprint weekends have a compressed format: Qualifying moves to Friday evening, Sprint Qualifying (for the sprint grid) on Saturday morning, the Sprint itself on Saturday afternoon, and the full race on Sunday. They divide opinion — fans love the extra action, purists miss the traditional format.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ======= RULES ======= -->
+<section id="rules">
+  <div class="section-label">Chapter 07</div>
+  <h2 class="section-title">Rules, Strategy<br>& How Points Work</h2>
+  <p class="section-intro">F1 has two championships running simultaneously — the Drivers' Championship and the Constructors' Championship. Understanding the scoring and key rules makes watching the races much more rewarding.</p>
+
+  <div class="accordion">
+
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="accordion-title">🏆 The Points System & Championships</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">
+        Points go to the top 10 finishers: <strong>25 · 18 · 15 · 12 · 10 · 8 · 6 · 4 · 2 · 1</strong>, plus 1 bonus point for the fastest lap (if you finish in the top 10). The Drivers' Championship goes to the driver with the most points at the end of the season. The Constructors' Championship adds both drivers' points together — so a team can score up to 50 points per race. Both championships are prestigious; the Constructors' Championship is worth hundreds of millions of dollars in prize money.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="accordion-title">🔄 Pit Stops & Tire Strategy</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">
+        Every driver must use at least two different tire compounds during a race (unless it rains). This forces at least one pit stop. A pit stop takes about 2.5 seconds for the fastest crews — 20 mechanics changing all four tires simultaneously. Strategy is everything: some teams "undercut" (pit early to get fresh tires and pass a rival); others "overcut" (stay out longer to get clean air and come out ahead after rivals pit). The strategic battle between teams is often more complex than the on-track battle.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="accordion-title">🟡 Flags — What They Mean</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">
+        <strong>🟢 Green:</strong> Track is clear, racing is on.<br><br>
+        <strong>🟡 Yellow:</strong> Hazard ahead — reduce speed, no overtaking in the yellow flag zone.<br><br>
+        <strong>🔴 Red:</strong> Session stopped — major incident or dangerous conditions. Everyone returns to pits.<br><br>
+        <strong>⚫ Black & White:</strong> Warning for unsporting behaviour (like blocking, dirty driving).<br><br>
+        <strong>⚫ Black:</strong> Driver is disqualified — must return to pits immediately.<br><br>
+        <strong>🏁 Chequered:</strong> Session / race is over.<br><br>
+        <strong>Blue:</strong> Shown to a car about to be lapped — must let the faster car past within 3 blue flags or be penalised.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="accordion-title">🚗 Safety Car & Virtual Safety Car</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">
+        When there's a significant incident, the Safety Car (a Mercedes-AMG GT) enters the track and leads all cars at reduced speed while marshals clear debris or attend to a crash. No overtaking allowed. Crucially, the Safety Car bunches the field together — cars that were laps ahead suddenly have rivals right behind them. This creates dramatic restarts and can completely change who wins. The Virtual Safety Car (VSC) is a milder version — cars slow down but the Safety Car doesn't physically deploy; used for smaller incidents.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="accordion-title">⚖️ Penalties & Stewards</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">
+        Race stewards (officials) can investigate incidents and issue penalties. Common penalties:<br><br>
+        <strong>5-second penalty:</strong> Time added to your race result (for minor infractions like unsafe pit release or minor collisions deemed your fault).<br>
+        <strong>10-second penalty:</strong> More serious infractions.<br>
+        <strong>Drive-through penalty:</strong> Must drive through the pit lane without stopping — wastes about 25–30 seconds.<br>
+        <strong>Stop-Go penalty:</strong> Must stop in pit lane for 10 seconds — very severe.<br>
+        <strong>Grid penalties:</strong> Applied before a race for taking extra engine components or for incidents in the previous race.<br><br>
+        The stewards' decisions are often controversial and widely debated by fans.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="accordion-title">💰 The Budget Cap</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">
+        Introduced in 2021, the Cost Cap limits how much teams can spend on car development per year (approximately $135 million USD in 2024, reducing over time). This is designed to prevent the richest teams from simply buying success. Before the cap, Ferrari and Mercedes were spending over $400 million per season. The cap has genuinely improved competitiveness — previously, 3 or 4 teams would fight for wins; now 5 or 6 teams are regularly in contention.
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-header" onclick="toggleAccordion(this)">
+        <span class="accordion-title">🏎️ Parc Fermé & Regulations</span>
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">
+        After qualifying, cars enter "Parc Fermé" — a restricted zone where teams can only make limited changes to the car before the race. This prevents teams from completely rebuilding their cars overnight with different specifications. It means the qualifying setup is essentially what you race with. Any significant changes (like changing the front wing angle) require FIA permission. It keeps the competition fair and prevents wealthier teams from simply throwing resources at overnight rebuilds.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ======= GLOSSARY ======= -->
+<section id="glossary">
+  <div class="section-label">Chapter 08</div>
+  <h2 class="section-title">F1 Glossary —<br>The Language of the Sport</h2>
+  <p class="section-intro">F1 has its own language. Understanding these terms will help you follow broadcasts, commentary, and conversations with other fans.</p>
+
+  <div class="glossary-grid">
+    <div class="glossary-item"><div class="glossary-term">Apex</div><div class="glossary-def">The innermost point of a corner — the ideal point where a driver clips the inside to carry maximum speed through the turn.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Backmarker</div><div class="glossary-def">A slower car (typically at the back of the field) that the race leaders are about to lap. Also called a "lapped car."</div></div>
+    <div class="glossary-item"><div class="glossary-term">Box, Box, Box</div><div class="glossary-def">The radio message from an engineer telling the driver to come into the pit lane. ("Box" = pit box.)</div></div>
+    <div class="glossary-item"><div class="glossary-term">Clean Air</div><div class="glossary-def">Racing without a car directly in front. Aerodynamically, following another car disturbs the airflow, costing downforce and lap time. Leading in "clean air" is a significant advantage.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Constructor</div><div class="glossary-def">The official term for an F1 team — used because teams "construct" their own cars. The Constructors' Championship is the team title.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Dirty Air</div><div class="glossary-def">The turbulent air behind another car that reduces downforce on the following car, making it harder to follow closely and overtake. A big problem in F1 historically.</div></div>
+    <div class="glossary-item"><div class="glossary-term">DNF</div><div class="glossary-def">Did Not Finish — a retirement from the race due to mechanical failure, accident, or disqualification.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Double Stack</div><div class="glossary-def">When a team brings both cars into the pit lane simultaneously. Rare but tactically powerful — saves time overall but risky if one car is delayed.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Downforce</div><div class="glossary-def">The aerodynamic force pushing the car into the ground at speed. More downforce = faster through corners, but more drag = slower on straights. Finding the balance is central to setup.</div></div>
+    <div class="glossary-item"><div class="glossary-term">DRS</div><div class="glossary-def">Drag Reduction System. A movable rear wing flap that reduces drag on straights, boosting top speed by up to 20km/h. Only usable in designated zones and only within 1 second of the car ahead.</div></div>
+    <div class="glossary-item"><div class="glossary-term">ERS</div><div class="glossary-def">Energy Recovery System. The hybrid part of the power unit that harvests electrical energy from braking and the turbocharger, storing it for deployment as extra power.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Formation Lap</div><div class="glossary-def">The lap before the race starts, where cars form up on the grid. Drivers weave to warm their tires. After this lap, they take their grid positions and wait for the 5 red lights to start the race.</div></div>
+    <div class="glossary-item"><div class="glossary-term">FIA</div><div class="glossary-def">Fédération Internationale de l'Automobile — the governing body of F1. They set the rules, approve circuits, license drivers, and adjudicate incidents.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Graining</div><div class="glossary-def">When thin slivers of rubber shear off the tire surface and stick to it, reducing grip. A temporary phenomenon that often clears after a few laps as the grains wear away.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Intermediate Tires</div><div class="glossary-def">The "middle" tire for damp but not soaking conditions. They work when there's light rain or a drying wet track. Called "inters" by teams and commentators.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Locking Up</div><div class="glossary-def">When a driver brakes so hard the wheels stop rotating and the car slides — causing flat spots on the tires and loss of control. Usually followed by a cloud of tire smoke.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Marbles</div><div class="glossary-def">Bits of rubber that come off tires and accumulate off the racing line. Driving on marbles is treacherous — like driving on ball bearings. Cars often go "off line" when overtaking and lose grip.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Overcut</div><div class="glossary-def">Staying out on track longer than the car ahead before pitting, hoping to come out ahead after they've pitted first. Works when fresh tires don't offer a big enough advantage.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Oversteer</div><div class="glossary-def">When the rear of the car slides out in a corner — the car rotates more than intended. Can be spectacular when controlled. Also called "snap oversteer" when it happens suddenly.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Parc Fermé</div><div class="glossary-def">A "closed park" where cars are kept after qualifying with very limited adjustments allowed before the race. From French — meaning "enclosed park."</div></div>
+    <div class="glossary-item"><div class="glossary-term">Podium</div><div class="glossary-def">Finishing in the top 3 positions. The "podium" is the raised platform where the top 3 drivers stand for the trophy ceremony and national anthems — one of F1's most iconic images.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Pole Position</div><div class="glossary-def">Starting at the front of the grid — the reward for the fastest qualifying lap. Starting from pole is a massive advantage, especially on tight circuits where overtaking is difficult.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Power Unit</div><div class="glossary-def">The complete engine system in F1: the internal combustion engine + turbocharger + two electric motor-generator units. Called a "power unit" rather than just "engine" to reflect this complexity.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Slipstream</div><div class="glossary-def">Driving closely behind another car in their "tow" — the low-pressure air pocket behind the car reduces aerodynamic resistance, boosting top speed. Common in qualifying laps and on long straights.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Tifosi</div><div class="glossary-def">The passionate Italian fans of Scuderia Ferrari. The name means "fans" or "enthusiasts" in Italian. The Tifosi at Monza create one of the most extraordinary atmospheres in all of sport.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Understeer</div><div class="glossary-def">When the front of the car doesn't turn as much as the driver steers — the car "ploughs" forward instead of turning. Often called "pushing" — the front tires lose grip and the car runs wide.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Undercut</div><div class="glossary-def">Pitting earlier than the car ahead to get fresh tires and post faster lap times, hoping to come out ahead when they eventually pit. One of the most common race-changing strategies.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Wall of Champions</div><div class="glossary-def">A notorious wall at the Circuit Gilles Villeneuve in Montreal that has collected World Champions over the years (Hill, Schumacher, Villeneuve all crashed here). One of F1's beloved running stories.</div></div>
+    <div class="glossary-item"><div class="glossary-term">Works Team</div><div class="glossary-def">A team that is officially supported or owned by an engine manufacturer (e.g., Ferrari, Mercedes, Red Bull/Honda). They get the best, most up-to-date engines. Customer teams buy last year's engines.</div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">F1 UNIVERSE</div>
+  <p>A complete beginner's guide to Formula One · All information educational &amp; informational</p>
+  <p style="margin-top:0.5rem;font-size:0.7rem">Formula One is a trademark of Formula One Licensing B.V. · This is an unofficial fan guide</p>
+</footer>
+
+<script>
+  // Accordion
+  function toggleAccordion(btn) {
+    const item = btn.closest('.accordion-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 0);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Stagger timeline items
+  document.querySelectorAll('.timeline-item').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.05}s`;
+  });
+
+  // Active nav highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 100) current = section.id;
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#' + current ? 'var(--white)' : '';
+      link.style.borderBottomColor = link.getAttribute('href') === '#' + current ? 'var(--red)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
